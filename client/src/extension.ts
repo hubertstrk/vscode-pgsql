@@ -10,12 +10,12 @@ import PostgresqlSignatureHelpProvider from './features/signatureHelpProvider';
 import pgsqlCommandProvider from './features/commandProvider';
 
 import * as vscode from 'vscode';
-import { workspace, Disposable, ExtensionContext } from 'vscode';
+// import { workspace, Disposable, ExtensionContext } from 'vscode';
 import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, TransportKind } from 'vscode-languageclient';
 
 let previewUri = vscode.Uri.parse('css-preview://authority/css-preview');
 
-export function activate(context: ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {
 
 	// preview window
 	class TextDocumentContentProvider implements vscode.TextDocumentContentProvider {
@@ -59,7 +59,7 @@ export function activate(context: ExtensionContext) {
 			// Synchronize the setting section 'languageServerExample' to the server
 			configurationSection: 'languageServerExample',
 			// Notify the server about file changes to '.clientrc files contain in the workspace
-			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')
+			fileEvents: vscode.workspace.createFileSystemWatcher('**/.clientrc')
 		}
 	}
 	

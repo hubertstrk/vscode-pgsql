@@ -1,9 +1,13 @@
 {
-  "name": "pgsql",
+  "name": "pgsql-html",
+  "displayName": "pgsql-html",
   "description": "postgres language support, snippets, runner, html preview",
   "license": "MIT",
   "version": "0.0.1",
   "publisher": "hubertstrk",
+  "author": {
+      "name": "Hubert Stärk"
+  },
   "engines": {
     "vscode": "^0.10.1"
   },
@@ -83,7 +87,7 @@
     "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
   },
   "devDependencies": {
-    "typescript": "^1.6.2",
+    "typescript": "^2.1.4",
     "vscode": "0.10.x"
   },
   "dependencies": {

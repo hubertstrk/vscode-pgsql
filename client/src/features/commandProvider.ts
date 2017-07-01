@@ -115,7 +115,7 @@ export default class pgsqlCommandProvider  {
             // callback to preview window
             this.onResult()
             
-            return commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Two, 'CSS Property Preview').then((success) => {
+            return commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Two, 'psql result').then((success) => {
             }, (reason) => {
                 window.showErrorMessage(reason);
             });

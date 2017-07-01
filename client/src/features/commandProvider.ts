@@ -110,7 +110,24 @@ export default class pgsqlCommandProvider  {
             })
             
             // store result
-            this.htmlResult = result 
+
+            let style = `<style>
+                #el table {
+                    border-collapse: collapse;
+                    border: 0px;
+                }
+                #el th, td {
+                    padding: 5px;
+                    text-align: left;
+                    border: 0px;
+                    border: 1px solid #D8D8D8;
+                }
+                // #el tr:hover td:first-child {
+                //     border-left: 3px solid yellow;
+                // }
+				</style>`
+
+            this.htmlResult = `${style}<body id="el">${result}</body`
             
             // callback to preview window
             this.onResult()

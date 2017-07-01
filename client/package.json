@@ -3,7 +3,7 @@
   "displayName": "pgsql-html",
   "description": "postgres language support, snippets, runner, html preview",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "publisher": "hubertstrk",
   "author": {
       "name": "Hubert Stärk"

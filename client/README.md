@@ -1,8 +1,8 @@
 # pgsql-html
 
-This extension is forked from [doublefint](https://github.com/doublefint). 
+Extension forked from [doublefint](https://github.com/doublefint). 
 
-## Features:
+## Features
 - Run current file into Postgres via psql
 - Colorization
 - Completion Lists for global postgres functions (copied from the Postgres official documentation)

@@ -1,16 +1,16 @@
 {
   "name": "pgsql",
-  "description": "postgres language support, snippets, runner. Fixed clone of postgresql@0.0.2 by JPTarquino",
+  "description": "postgres language support, snippets, runner, html preview",
   "license": "MIT",
-  "version": "0.0.8",
-  "publisher": "doublefint",
+  "version": "0.0.1",
+  "publisher": "hubertstrk",
   "engines": {
     "vscode": "^0.10.1"
   },
-  "icon": "images/logo.png",
+  "icon": "images/postgres_icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/doublefint/vscode-pgsql.git"
+    "url": "https://github.com/hubertstrk/vscode-pgsql-html"
   },
   "categories": [
     "Languages",

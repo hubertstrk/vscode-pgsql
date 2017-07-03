@@ -75,6 +75,7 @@ export default class pgsqlCommandProvider  {
                 "-H"
             ]
 
+        this.htmlResult = ''
         pgsql.outChannel.show( ViewColumn.Two )
 
         let cp = ChildProcess.spawn( pgsql.executable, args )
@@ -82,9 +83,6 @@ export default class pgsqlCommandProvider  {
         if ( !cp.pid ){
             return pgsql.outChannel.appendLine( 'pgsql: can\'t spawn child proceess' )    
         }
-        
-        //args.unshift( pgsql.executable )
-        //console.log( args.join(" ") )
         
         cp.on( 'error', ( err: Error ) => {
             
@@ -101,41 +99,19 @@ export default class pgsqlCommandProvider  {
 
         let decoder = new LineDecoder()
         pgsql.outChannel.show( ViewColumn.Two )
-        
+
         cp.stdout.on('data', (data) => {
             let result = ''
             decoder.write(data).forEach( function (line:string) {
-                // pgsql.outChannel.appendLine( line )
-                result += line // collect the result
+                result += line
             })
             
-            // store result
-
-            let style = `<style>
-                #el table {
-                    border-collapse: collapse;
-                    border: 0px;
-                }
-                #el th, td {
-                    padding: 5px;
-                    text-align: left;
-                    border: 0px;
-                    border: 1px solid #D8D8D8;
-                }
-                // #el tr:hover td:first-child {
-                //     border-left: 3px solid yellow;
-                // }
-				</style>`
-
-            this.htmlResult = `${style}<body id="el">${result}</body`
-            
-            // callback to preview window
-            this.onResult()
+            this.htmlResult += result
             
             return commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Two, 'psql result').then((success) => {
-            }, (reason) => {
-                window.showErrorMessage(reason);
-            });
+                }, (reason) => {
+                    window.showErrorMessage(reason);
+                });
         })
         
         cp.stderr.on('data', ( data ) => {
@@ -144,20 +120,35 @@ export default class pgsqlCommandProvider  {
             })
         })
 
-        // cp.stdout.on('end', () => {
-        //     pgsql.outChannel.appendLine('pgsql end.')
-        //     if ( cb ) cb()
-        // })
+        cp.stdout.on('end', () => {
+            this.onResult()
+        })
     }
 
-    // Result received fom psql cli
     public onResult() {
-        this.Action(this.htmlResult)
+
+        let style = `<style>
+        #el table {
+            border-collapse: collapse;
+            border: 0px;
+        }
+        #el th, td {
+            padding: 5px;
+            text-align: left;
+            border: 0px;
+            border: 1px solid #D8D8D8;
+        }
+        // #el tr:hover td:first-child {
+        //     border-left: 3px solid yellow;
+        // }
+        </style>`
+
+        this.htmlResult = `${style}<body id="el">${this.htmlResult}</body`
+        this.CallbackAction(this.htmlResult)
     }
 
-    // Register callback for preview window
-    private Action
+    private CallbackAction
     public RegisterCallback(action) {
-        this.Action = action
+        this.CallbackAction = action
     }
 }

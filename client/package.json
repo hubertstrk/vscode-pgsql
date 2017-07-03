@@ -6,7 +6,7 @@
   "version": "0.0.5",
   "publisher": "hubertstrk",
   "author": {
-      "name": "Hubert Stärk"
+    "name": "Hubert Stärk"
   },
   "engines": {
     "vscode": "^0.10.1"
